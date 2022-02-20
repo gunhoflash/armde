@@ -50,4 +50,3 @@ var Viewer = /** @class */ (function (_super) {
     return Viewer;
 }(React.Component));
 export default Viewer;
-//# sourceMappingURL=ArmdeViewer.js.map

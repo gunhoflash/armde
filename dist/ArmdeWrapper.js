@@ -32,4 +32,3 @@ var ArmdeWrapper = /** @class */ (function (_super) {
     return ArmdeWrapper;
 }(React.Component));
 export default ArmdeWrapper;
-//# sourceMappingURL=ArmdeWrapper.js.map

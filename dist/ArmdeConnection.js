@@ -18,4 +18,3 @@ var ArmdeConnection = /** @class */ (function () {
     return ArmdeConnection;
 }());
 export default ArmdeConnection;
-//# sourceMappingURL=ArmdeConnection.js.map

@@ -1,6 +1,6 @@
 {
   "name": "armde",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Awesome React Markdown Editor",
   "main": "./dist/index.js",
   "scripts": {

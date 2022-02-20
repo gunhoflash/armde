@@ -50,4 +50,3 @@ var Editor = /** @class */ (function (_super) {
     return Editor;
 }(React.Component));
 export default Editor;
-//# sourceMappingURL=ArmdeEditor.js.map
