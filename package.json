@@ -1,6 +1,6 @@
 {
   "name": "armde",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Awesome React Markdown Editor",
   "main": "./dist/index.js",
   "scripts": {
@@ -40,7 +40,8 @@
   "dependencies": {
     "@types/marked": "^4.0.2",
     "classnames": "^2.3.1",
-    "marked": "^4.0.12"
+    "marked": "^4.0.12",
+    "sass": "^1.49.8"
   },
   "exports": {
     ".": {
