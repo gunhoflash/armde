@@ -5,9 +5,7 @@ import { ArmdeProps } from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeViewer.module.scss';
 
-export interface ArmdeViewerProps extends ArmdeProps, React.HTMLAttributes<HTMLDivElement> {
-  connection?: ArmdeConnection;
-}
+export interface ArmdeViewerProps extends ArmdeProps, React.HTMLAttributes<HTMLDivElement> {}
 
 interface ArmdeViewerState {
   connection: ArmdeConnection;

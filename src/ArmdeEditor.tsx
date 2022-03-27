@@ -4,9 +4,7 @@ import { ArmdeProps } from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeEditor.module.scss';
 
-export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  connection: ArmdeConnection;
-}
+export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 interface ArmdeEditorState {
   connection: ArmdeConnection;
