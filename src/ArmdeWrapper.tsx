@@ -4,11 +4,11 @@ import ArmdeEditor, { ArmdeEditorProps } from './ArmdeEditor';
 import ArmdeViewer, { ArmdeViewerProps } from './ArmdeViewer';
 
 export interface ArmdeProps {
-  connection?: ArmdeConnection;
   noStyle?: boolean;
 }
 
 export interface ArmdeWrapperProps extends ArmdeProps {
+  connection?: ArmdeConnection;
   editorProps?: ArmdeEditorProps;
   viewerProps?: ArmdeViewerProps;
 }
