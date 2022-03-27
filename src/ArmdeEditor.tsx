@@ -8,32 +8,26 @@ export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttribut
   connection: ArmdeConnection;
 }
 
-export default class Editor extends React.Component<ArmdeEditorProps> {
-  connection: ArmdeConnection;
+const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
+  const connection: ArmdeConnection = props.connection;
 
-  constructor (props: ArmdeEditorProps) {
-    super(props);
-
-    if (!props.connection) {
-      throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
-    }
-
-    this.connection = props.connection;
+  if (!props.connection) {
+    throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
   }
 
-  onChangeTextareaValue (e: React.ChangeEvent<HTMLTextAreaElement>) {
-    this.connection.markdownValue = e.target.value;
-  }
+  const onChangeTextareaValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    connection.markdownValue = e.target.value;
+  };
 
-  render () {
-    return (
-      <textarea
-        {...{...this.props, connection: undefined, noStyle: undefined}}
-        className={classNames(this.props.className, {
-          [styles.editor]: !this.props.noStyle,
-        })}
-        onChange={this.onChangeTextareaValue.bind(this)}
-      />
-    );
-  }
-}
+  return (
+    <textarea
+      {...{...props, connection: undefined, noStyle: undefined}}
+      className={classNames(props.className, {
+        [styles.editor]: !props.noStyle,
+      })}
+      onChange={onChangeTextareaValue.bind(this)}
+    />
+  );
+};
+
+export default ArmdeEditor;
