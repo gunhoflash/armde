@@ -4,9 +4,7 @@ import { ArmdeProps } from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeEditor.module.scss';
 
-export interface ArmdeEditorProps extends ArmdeProps, React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
-  connection: ArmdeConnection;
-}
+export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 interface ArmdeEditorState {
   connection: ArmdeConnection;
@@ -29,8 +27,8 @@ export default class Editor extends React.Component<ArmdeEditorProps, ArmdeEdito
   render () {
     return (
       <textarea
-        {...this.props}
-        className={classNames(this.props.className || '', {
+        {...{...this.props, connection: undefined, noStyle: undefined}}
+        className={classNames(this.props.className, {
           [styles.editor]: !this.props.noStyle,
         })}
         onChange={this.onChangeTextareaValue.bind(this)}

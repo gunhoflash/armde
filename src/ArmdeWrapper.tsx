@@ -1,26 +1,31 @@
 import React from 'react';
-import ArmdeEditor from './ArmdeEditor';
-import ArmdeViewer from './ArmdeViewer';
 import ArmdeConnection from './ArmdeConnection';
+import ArmdeEditor, { ArmdeEditorProps } from './ArmdeEditor';
+import ArmdeViewer, { ArmdeViewerProps } from './ArmdeViewer';
 
 export interface ArmdeProps {
+  connection?: ArmdeConnection;
   noStyle?: boolean;
 }
 
-export type ArmdeWrapperProps = ArmdeProps
+export interface ArmdeWrapperProps extends ArmdeProps {
+  editorProps?: ArmdeEditorProps;
+  viewerProps?: ArmdeViewerProps;
+}
 
 export default class ArmdeWrapper extends React.Component<ArmdeWrapperProps> {
-  connection = new ArmdeConnection();
+  connection: ArmdeConnection;
 
   constructor (props: ArmdeWrapperProps) {
     super(props);
+    this.connection = props.connection || new ArmdeConnection();
   }
 
   render () {
     return (
       <>
-        <ArmdeEditor connection={this.connection} noStyle={this.props.noStyle} />
-        <ArmdeViewer connection={this.connection} noStyle={this.props.noStyle} />
+        <ArmdeEditor {...this.props.editorProps} connection={this.connection} noStyle={this.props.noStyle} />
+        <ArmdeViewer {...this.props.viewerProps} connection={this.connection} noStyle={this.props.noStyle} />
       </>
     );
   }
