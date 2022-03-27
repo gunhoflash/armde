@@ -4,24 +4,25 @@ import { ArmdeProps } from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeEditor.module.scss';
 
-export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
-
-interface ArmdeEditorState {
+export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   connection: ArmdeConnection;
 }
 
-export default class Editor extends React.Component<ArmdeEditorProps, ArmdeEditorState> {
-  state = {
-    connection: this.props.connection || new ArmdeConnection(),
-  };
+export default class Editor extends React.Component<ArmdeEditorProps> {
+  connection: ArmdeConnection;
 
   constructor (props: ArmdeEditorProps) {
     super(props);
+
+    if (!props.connection) {
+      throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
+    }
+
+    this.connection = props.connection;
   }
 
   onChangeTextareaValue (e: React.ChangeEvent<HTMLTextAreaElement>) {
-    // eslint-disable-next-line react/no-direct-mutation-state
-    this.state.connection.markdownValue = e.target.value;
+    this.connection.markdownValue = e.target.value;
   }
 
   render () {
