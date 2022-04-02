@@ -1,18 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -27,26 +12,19 @@ var __assign = (this && this.__assign) || function () {
 import classNames from 'classnames';
 import { marked } from 'marked';
 import React from 'react';
-import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeViewer.module.scss';
-var Viewer = /** @class */ (function (_super) {
-    __extends(Viewer, _super);
-    function Viewer(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {
-            connection: _this.props.connection || new ArmdeConnection(),
-        };
-        _this.state.connection.onChange = function () {
-            _this.forceUpdate();
-        };
-        return _this;
+var ArmdeViewer = function (props) {
+    var _a;
+    var connection = props.connection;
+    var _b = React.useState(''), parsedHtml = _b[0], setParsedHtml = _b[1];
+    if (!props.connection) {
+        throw new Error("It seems ArmdeViewer was be used standalone without a 'connection' property.");
     }
-    Viewer.prototype.render = function () {
-        var _a;
-        return (React.createElement("div", __assign({}, this.props, { className: classNames(this.props.className || '', (_a = {},
-                _a[styles.viewer] = !this.props.noStyle,
-                _a)), dangerouslySetInnerHTML: { __html: marked.parse(this.state.connection.markdownValue || '') } })));
+    connection.onChange = function (markdownValue) {
+        setParsedHtml(marked(markdownValue) || '');
     };
-    return Viewer;
-}(React.Component));
-export default Viewer;
+    return (React.createElement("div", __assign({}, __assign(__assign({}, props), { connection: undefined, noStyle: undefined }), { className: classNames(props.className, (_a = {},
+            _a[styles.viewer] = !props.noStyle,
+            _a)), dangerouslySetInnerHTML: { __html: parsedHtml } })));
+};
+export default ArmdeViewer;

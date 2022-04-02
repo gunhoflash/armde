@@ -1,40 +1,35 @@
 import classNames from 'classnames';
-import { marked } from 'marked';
+import {marked} from 'marked';
 import React from 'react';
-import { ArmdeProps } from './ArmdeWrapper';
+import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeViewer.module.scss';
 
-export interface ArmdeViewerProps extends ArmdeProps, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  connection?: ArmdeConnection;
-}
-
-interface ArmdeViewerState {
+export interface ArmdeViewerProps extends ArmdeProps, React.HTMLAttributes<HTMLDivElement> {
   connection: ArmdeConnection;
 }
 
-export default class Viewer extends React.Component<ArmdeViewerProps, ArmdeViewerState> {
-  state = {
-    connection: this.props.connection || new ArmdeConnection(),
+const ArmdeViewer: React.FC<ArmdeViewerProps> = (props: ArmdeViewerProps) => {
+  const connection: ArmdeConnection = props.connection;
+  const [parsedHtml, setParsedHtml] = React.useState('');
+
+  if (!props.connection) {
+    throw new Error(`It seems ArmdeViewer was be used standalone without a 'connection' property.`);
+  }
+
+  connection.onChange = (markdownValue) => {
+    setParsedHtml(marked(markdownValue) || '');
   };
 
-  constructor (props: ArmdeViewerProps) {
-    super(props);
+  return (
+    <div
+      {...{...props, connection: undefined, noStyle: undefined}}
+      className={classNames(props.className, {
+        [styles.viewer]: !props.noStyle,
+      })}
+      dangerouslySetInnerHTML={{__html: parsedHtml}}
+    />
+  );
+};
 
-    this.state.connection.onChange = () => {
-      this.forceUpdate();
-    };
-  }
-
-  render () {
-    return (
-      <div
-        {...this.props}
-        className={classNames(this.props.className || '', {
-          [styles.viewer]: !this.props.noStyle,
-        })}
-        dangerouslySetInnerHTML={{ __html: marked.parse(this.state.connection.markdownValue || '') }}
-      />
-    );
-  }
-}
+export default ArmdeViewer;

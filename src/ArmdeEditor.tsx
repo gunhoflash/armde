@@ -1,40 +1,33 @@
 import classNames from 'classnames';
 import React from 'react';
-import { ArmdeProps } from './ArmdeWrapper';
+import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeEditor.module.scss';
 
-export interface ArmdeEditorProps extends ArmdeProps, React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   connection: ArmdeConnection;
 }
 
-interface ArmdeEditorState {
-  connection: ArmdeConnection;
-}
+const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
+  const connection: ArmdeConnection = props.connection;
 
-export default class Editor extends React.Component<ArmdeEditorProps, ArmdeEditorState> {
-  state = {
-    connection: this.props.connection || new ArmdeConnection(),
+  if (!props.connection) {
+    throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
+  }
+
+  const onChangeTextareaValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    connection.markdownValue = e.target.value;
   };
 
-  constructor (props: ArmdeEditorProps) {
-    super(props);
-  }
+  return (
+    <textarea
+      {...{...props, connection: undefined, noStyle: undefined}}
+      className={classNames(props.className, {
+        [styles.editor]: !props.noStyle,
+      })}
+      onChange={onChangeTextareaValue.bind(this)}
+    />
+  );
+};
 
-  onChangeTextareaValue (e: React.ChangeEvent<HTMLTextAreaElement>) {
-    // eslint-disable-next-line react/no-direct-mutation-state
-    this.state.connection.markdownValue = e.target.value;
-  }
-
-  render () {
-    return (
-      <textarea
-        {...this.props}
-        className={classNames(this.props.className || '', {
-          [styles.editor]: !this.props.noStyle,
-        })}
-        onChange={this.onChangeTextareaValue.bind(this)}
-      />
-    );
-  }
-}
+export default ArmdeEditor;

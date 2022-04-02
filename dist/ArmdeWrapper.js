@@ -1,34 +1,22 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
     };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+    return __assign.apply(this, arguments);
+};
 import React from 'react';
+import ArmdeConnection from './ArmdeConnection';
 import ArmdeEditor from './ArmdeEditor';
 import ArmdeViewer from './ArmdeViewer';
-import ArmdeConnection from './ArmdeConnection';
-var ArmdeWrapper = /** @class */ (function (_super) {
-    __extends(ArmdeWrapper, _super);
-    function ArmdeWrapper(props) {
-        var _this = _super.call(this, props) || this;
-        _this.connection = new ArmdeConnection();
-        return _this;
-    }
-    ArmdeWrapper.prototype.render = function () {
-        return (React.createElement(React.Fragment, null,
-            React.createElement(ArmdeEditor, { connection: this.connection, noStyle: this.props.noStyle }),
-            React.createElement(ArmdeViewer, { connection: this.connection, noStyle: this.props.noStyle })));
-    };
-    return ArmdeWrapper;
-}(React.Component));
+var ArmdeWrapper = function (props) {
+    var connection = props.connection || new ArmdeConnection();
+    return (React.createElement(React.Fragment, null,
+        React.createElement(ArmdeEditor, __assign({}, props.editorProps, { connection: connection, noStyle: props.noStyle })),
+        React.createElement(ArmdeViewer, __assign({}, props.viewerProps, { connection: connection, noStyle: props.noStyle }))));
+};
 export default ArmdeWrapper;
