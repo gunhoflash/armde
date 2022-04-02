@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { marked } from 'marked';
+import {marked} from 'marked';
 import React from 'react';
-import { ArmdeProps } from './ArmdeWrapper';
+import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeViewer.module.scss';
 
@@ -27,7 +27,7 @@ const ArmdeViewer: React.FC<ArmdeViewerProps> = (props: ArmdeViewerProps) => {
       className={classNames(props.className, {
         [styles.viewer]: !props.noStyle,
       })}
-      dangerouslySetInnerHTML={{ __html: parsedHtml }}
+      dangerouslySetInnerHTML={{__html: parsedHtml}}
     />
   );
 };

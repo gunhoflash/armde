@@ -1,7 +1,7 @@
 import React from 'react';
 import ArmdeConnection from './ArmdeConnection';
-import ArmdeEditor, { ArmdeEditorProps } from './ArmdeEditor';
-import ArmdeViewer, { ArmdeViewerProps } from './ArmdeViewer';
+import ArmdeEditor, {ArmdeEditorProps} from './ArmdeEditor';
+import ArmdeViewer, {ArmdeViewerProps} from './ArmdeViewer';
 
 export interface ArmdeProps {
   noStyle?: boolean;

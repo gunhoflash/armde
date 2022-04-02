@@ -17,7 +17,7 @@ export default class ArmdeConnection {
     this._markdownValue = value;
     this.onChange(value);
   }
-  
+
   get markdownValue () {
     return this._markdownValue;
   }

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { ArmdeProps } from './ArmdeWrapper';
+import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
 import styles from './style/ArmdeEditor.module.scss';
 

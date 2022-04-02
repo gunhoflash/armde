@@ -23,6 +23,14 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/semi": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "eol-last": "error",
+    "no-trailing-spaces":"error",
+    "object-curly-spacing": ["error", "never"],
+    "space-before-blocks": "error",
+    "space-in-parens": "error"
   }
 }
