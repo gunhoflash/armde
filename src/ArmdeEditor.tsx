@@ -11,11 +11,16 @@ export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttribut
 
 const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
   const connection: ArmdeConnection = props.connection;
-  const textareaRef = useEditorHotkeys();
+
+  const setMarkdownValue = (value: string) => {
+    connection.markdownValue = value;
+  };
 
   const onChangeTextareaValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    connection.markdownValue = e.target.value;
+    setMarkdownValue(e.target.value);
   };
+
+  const textareaRef = useEditorHotkeys(setMarkdownValue);
 
   if (!props.connection) {
     throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
