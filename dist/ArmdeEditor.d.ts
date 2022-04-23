@@ -1,8 +1,7 @@
 import React from 'react';
-import ArmdeConnection from './ArmdeConnection';
+import { ArmdePropsWithConnection } from './ArmdeWrapper';
 export interface ArmdeEditorProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    connection: ArmdeConnection;
     hotkeyEnabled?: boolean;
 }
-declare const ArmdeEditor: React.FC<ArmdeEditorProps>;
+declare const ArmdeEditor: React.FC<ArmdePropsWithConnection<ArmdeEditorProps>>;
 export default ArmdeEditor;

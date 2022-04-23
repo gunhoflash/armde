@@ -3,6 +3,10 @@ import ArmdeConnection from './ArmdeConnection';
 import ArmdeEditor, {ArmdeEditorProps} from './ArmdeEditor';
 import ArmdeViewer, {ArmdeViewerProps} from './ArmdeViewer';
 
+export type ArmdePropsWithConnection<T> = T & {
+  connection: ArmdeConnection;
+};
+
 export interface ArmdeWrapperProps {
   connection?: ArmdeConnection;
   editorProps?: ArmdeEditorProps;

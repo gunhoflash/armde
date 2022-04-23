@@ -1,13 +1,13 @@
 import React from 'react';
 import ArmdeConnection from './ArmdeConnection';
+import {ArmdePropsWithConnection} from './ArmdeWrapper';
 import useEditorHotkeys from './hooks/useEditorHotkeys';
 
 export interface ArmdeEditorProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  connection: ArmdeConnection;
   hotkeyEnabled?: boolean;
 }
 
-const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
+const ArmdeEditor: React.FC<ArmdePropsWithConnection<ArmdeEditorProps>> = props => {
   const connection: ArmdeConnection = props.connection;
 
   const setMarkdownValue = (value: string) => {
