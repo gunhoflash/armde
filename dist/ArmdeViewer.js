@@ -9,22 +9,17 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import classNames from 'classnames';
 import { marked } from 'marked';
 import React from 'react';
-import styles from './style/ArmdeViewer.module.scss';
 var ArmdeViewer = function (props) {
-    var _a;
     var connection = props.connection;
-    var _b = React.useState(''), parsedHtml = _b[0], setParsedHtml = _b[1];
+    var _a = React.useState(''), parsedHtml = _a[0], setParsedHtml = _a[1];
     if (!props.connection) {
         throw new Error("It seems ArmdeViewer was be used standalone without a 'connection' property.");
     }
     connection.onChange = function (markdownValue) {
         setParsedHtml(marked(markdownValue) || '');
     };
-    return (React.createElement("div", __assign({}, __assign(__assign({}, props), { connection: undefined, noStyle: undefined }), { className: classNames(props.className, (_a = {},
-            _a[styles.viewer] = !props.noStyle,
-            _a)), dangerouslySetInnerHTML: { __html: parsedHtml } })));
+    return (React.createElement("div", __assign({}, __assign(__assign({}, props), { connection: undefined }), { dangerouslySetInnerHTML: { __html: parsedHtml } })));
 };
 export default ArmdeViewer;

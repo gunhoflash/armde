@@ -16,7 +16,7 @@ import ArmdeViewer from './ArmdeViewer';
 var ArmdeWrapper = function (props) {
     var connection = props.connection || new ArmdeConnection();
     return (React.createElement(React.Fragment, null,
-        React.createElement(ArmdeEditor, __assign({}, props.editorProps, { connection: connection, noStyle: props.noStyle })),
-        React.createElement(ArmdeViewer, __assign({}, props.viewerProps, { connection: connection, noStyle: props.noStyle }))));
+        React.createElement(ArmdeEditor, __assign({}, props.editorProps, { connection: connection })),
+        React.createElement(ArmdeViewer, __assign({}, props.viewerProps, { connection: connection }))));
 };
 export default ArmdeWrapper;
