@@ -24,6 +24,7 @@
   ],
   "rules": {
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/semi": "error",
     "@typescript-eslint/type-annotation-spacing": "error",
     "arrow-spacing": ["error", { "before": true, "after": true }],

@@ -1,12 +1,12 @@
 import {marked} from 'marked';
 import React from 'react';
 import ArmdeConnection from './ArmdeConnection';
+import {ArmdePropsWithConnection} from './ArmdeWrapper';
 
 export interface ArmdeViewerProps extends React.HTMLAttributes<HTMLDivElement> {
-  connection: ArmdeConnection;
 }
 
-const ArmdeViewer: React.FC<ArmdeViewerProps> = (props: ArmdeViewerProps) => {
+const ArmdeViewer: React.FC<ArmdePropsWithConnection<ArmdeViewerProps>> = props => {
   const connection: ArmdeConnection = props.connection;
   const [parsedHtml, setParsedHtml] = React.useState('');
 
