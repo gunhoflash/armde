@@ -32,5 +32,9 @@
     "object-curly-spacing": ["error", "never"],
     "space-before-blocks": "error",
     "space-in-parens": "error"
-  }
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/"
+  ]
 }
