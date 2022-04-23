@@ -1,5 +1,5 @@
 var noop = function () { };
-var ArmdeConnection = /** @class */ (function () {
+var ArmdeConnection = (function () {
     function ArmdeConnection(params) {
         this.onChange = (params === null || params === void 0 ? void 0 : params.onChange) || noop;
         this._markdownValue = this.markdownValue = '';
