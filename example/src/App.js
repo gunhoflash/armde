@@ -9,10 +9,6 @@ function App() {
       <div className="box">
         <ArmdeWrapper />
       </div>
-      <h1>ArmdeWrapper without style</h1>
-      <div className="box">
-        <ArmdeWrapper noStyle />
-      </div>
       <h1>ArmdeEditor and ArmdeViewer</h1>
       <div className="box">
         <ArmdeEditor connection={connection} />

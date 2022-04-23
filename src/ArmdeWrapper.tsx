@@ -3,11 +3,7 @@ import ArmdeConnection from './ArmdeConnection';
 import ArmdeEditor, {ArmdeEditorProps} from './ArmdeEditor';
 import ArmdeViewer, {ArmdeViewerProps} from './ArmdeViewer';
 
-export interface ArmdeProps {
-  noStyle?: boolean;
-}
-
-export interface ArmdeWrapperProps extends ArmdeProps {
+export interface ArmdeWrapperProps {
   connection?: ArmdeConnection;
   editorProps?: ArmdeEditorProps;
   viewerProps?: ArmdeViewerProps;
@@ -18,8 +14,8 @@ const ArmdeWrapper: React.FC<ArmdeWrapperProps> = (props: ArmdeWrapperProps) => 
 
   return (
     <>
-      <ArmdeEditor {...props.editorProps} connection={connection} noStyle={props.noStyle} />
-      <ArmdeViewer {...props.viewerProps} connection={connection} noStyle={props.noStyle} />
+      <ArmdeEditor {...props.editorProps} connection={connection} />
+      <ArmdeViewer {...props.viewerProps} connection={connection} />
     </>
   );
 };
