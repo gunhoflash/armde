@@ -14,6 +14,10 @@ function App() {
         <ArmdeEditor connection={connection} />
         <ArmdeViewer connection={connection} />
       </div>
+      <h1>Hotkey Enabled</h1>
+      <div className="box">
+        <ArmdeWrapper editorProps={{hotkeyEnabled: true}} />
+      </div>
     </div>
   );
 }

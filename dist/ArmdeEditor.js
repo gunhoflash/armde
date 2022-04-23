@@ -20,10 +20,10 @@ var ArmdeEditor = function (props) {
     var onChangeTextareaValue = function (e) {
         setMarkdownValue(e.target.value);
     };
-    var textareaRef = useEditorHotkeys(setMarkdownValue);
+    var textareaRef = useEditorHotkeys(setMarkdownValue, !!props.hotkeyEnabled);
     if (!props.connection) {
         throw new Error("It seems ArmdeEditor was be used standalone without a 'connection' property.");
     }
-    return (React.createElement("textarea", __assign({ ref: textareaRef }, __assign(__assign({}, props), { connection: undefined }), { onChange: onChangeTextareaValue.bind(_this) })));
+    return (React.createElement("textarea", __assign({ ref: textareaRef }, __assign(__assign({}, props), { connection: undefined, hotkeyEnabled: undefined }), { onChange: onChangeTextareaValue.bind(_this) })));
 };
 export default ArmdeEditor;

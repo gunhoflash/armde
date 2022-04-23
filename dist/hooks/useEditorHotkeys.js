@@ -1,6 +1,6 @@
 import { useHotkeys } from "react-hotkeys-hook";
 import { Shortcut } from "../config/shortcut";
-var useEditorHotkeys = function (setter) {
+var useEditorHotkeys = function (setter, enabled) {
     var ref = useHotkeys(Object.values(Shortcut).join(', '), function (_, handler) {
         var textarea = ref.current;
         if (!(textarea === null || textarea === void 0 ? void 0 : textarea.contains(document.activeElement)))
@@ -29,7 +29,7 @@ var useEditorHotkeys = function (setter) {
         setter(newText);
         textarea.setSelectionRange(newText.length - text3.length, newText.length - text3.length);
     }, {
-        enableOnTags: ['TEXTAREA'],
+        enableOnTags: enabled ? ['TEXTAREA'] : [],
     });
     return ref;
 };

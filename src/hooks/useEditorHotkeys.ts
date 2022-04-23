@@ -3,9 +3,10 @@ import {Shortcut} from "../config/shortcut";
 
 type UseEditorHotkeys = (
   setter: (v: string) => void,
+  enabled: boolean
 ) => React.MutableRefObject<HTMLTextAreaElement>;
 
-const useEditorHotkeys: UseEditorHotkeys = setter => {
+const useEditorHotkeys: UseEditorHotkeys = (setter, enabled) => {
   const ref = useHotkeys(Object.values(Shortcut).join(', '), (_, handler) => {
     const textarea = ref.current;
     if (!textarea?.contains(document.activeElement)) return;
@@ -44,7 +45,7 @@ const useEditorHotkeys: UseEditorHotkeys = setter => {
     // revert cursor
     textarea.setSelectionRange(newText.length - text3.length, newText.length - text3.length);
   }, {
-    enableOnTags: ['TEXTAREA'],
+    enableOnTags: enabled ? ['TEXTAREA'] : [],
   }) as React.MutableRefObject<HTMLTextAreaElement>;
 
   return ref;
