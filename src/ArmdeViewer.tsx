@@ -1,15 +1,12 @@
-import classNames from 'classnames';
 import {marked} from 'marked';
 import React from 'react';
-import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
-import styles from './style/ArmdeViewer.module.scss';
+import {ArmdePropsWithConnection} from './ArmdeWrapper';
 
-export interface ArmdeViewerProps extends ArmdeProps, React.HTMLAttributes<HTMLDivElement> {
-  connection: ArmdeConnection;
+export interface ArmdeViewerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
-const ArmdeViewer: React.FC<ArmdeViewerProps> = (props: ArmdeViewerProps) => {
+const ArmdeViewer: React.FC<ArmdePropsWithConnection<ArmdeViewerProps>> = props => {
   const connection: ArmdeConnection = props.connection;
   const [parsedHtml, setParsedHtml] = React.useState('');
 
@@ -23,10 +20,7 @@ const ArmdeViewer: React.FC<ArmdeViewerProps> = (props: ArmdeViewerProps) => {
 
   return (
     <div
-      {...{...props, connection: undefined, noStyle: undefined}}
-      className={classNames(props.className, {
-        [styles.viewer]: !props.noStyle,
-      })}
+      {...{...props, connection: undefined}}
       dangerouslySetInnerHTML={{__html: parsedHtml}}
     />
   );

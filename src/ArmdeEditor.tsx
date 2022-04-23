@@ -1,15 +1,13 @@
-import classNames from 'classnames';
 import React from 'react';
-import {ArmdeProps} from './ArmdeWrapper';
 import ArmdeConnection from './ArmdeConnection';
+import {ArmdePropsWithConnection} from './ArmdeWrapper';
 import useEditorHotkeys from './hooks/useEditorHotkeys';
-import styles from './style/ArmdeEditor.module.scss';
 
-export interface ArmdeEditorProps extends ArmdeProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  connection: ArmdeConnection;
+export interface ArmdeEditorProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  hotkeyEnabled?: boolean;
 }
 
-const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
+const ArmdeEditor: React.FC<ArmdePropsWithConnection<ArmdeEditorProps>> = props => {
   const connection: ArmdeConnection = props.connection;
 
   const setMarkdownValue = (value: string) => {
@@ -20,7 +18,7 @@ const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
     setMarkdownValue(e.target.value);
   };
 
-  const textareaRef = useEditorHotkeys(setMarkdownValue);
+  const textareaRef = useEditorHotkeys(setMarkdownValue, !!props.hotkeyEnabled);
 
   if (!props.connection) {
     throw new Error(`It seems ArmdeEditor was be used standalone without a 'connection' property.`);
@@ -29,10 +27,7 @@ const ArmdeEditor: React.FC<ArmdeEditorProps> = (props: ArmdeEditorProps) => {
   return (
     <textarea
       ref={textareaRef}
-      {...{...props, connection: undefined, noStyle: undefined}}
-      className={classNames(props.className, {
-        [styles.editor]: !props.noStyle,
-      })}
+      {...{...props, connection: undefined, hotkeyEnabled: undefined}}
       onChange={onChangeTextareaValue.bind(this)}
     />
   );

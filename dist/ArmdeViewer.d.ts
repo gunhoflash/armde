@@ -1,8 +1,6 @@
 import React from 'react';
-import { ArmdeProps } from './ArmdeWrapper';
-import ArmdeConnection from './ArmdeConnection';
-export interface ArmdeViewerProps extends ArmdeProps, React.HTMLAttributes<HTMLDivElement> {
-    connection: ArmdeConnection;
+import { ArmdePropsWithConnection } from './ArmdeWrapper';
+export interface ArmdeViewerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
-declare const ArmdeViewer: React.FC<ArmdeViewerProps>;
+declare const ArmdeViewer: React.FC<ArmdePropsWithConnection<ArmdeViewerProps>>;
 export default ArmdeViewer;
